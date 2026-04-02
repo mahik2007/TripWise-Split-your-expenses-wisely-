@@ -28,8 +28,8 @@ TripWise is a web-based application designed to help users manage and split grou
 - Mahima Kumari (Team Leader & Frontend - HTML/CSS)
 - Komal (Backend - Python)
 - Mansi (AI Chatbot Integration)
-- Khushi (JavaScript - Logic)
-- Khushi Singh (JavaScript - UI Interaction & Testing)
+- Khushi Kumari(JavaScript - Logic)
+- Khushi Kumari(JavaScript - UI Interaction & Testing)
 
 ## Project Status
 This project is currently under development. The basic structure of the website has been created, and further implementation is in progress.
