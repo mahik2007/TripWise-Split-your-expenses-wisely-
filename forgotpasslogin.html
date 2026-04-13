@@ -1,38 +1,363 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>forgot password - TripWise</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - TripWise</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', sans-serif;
+        }
+
+        html, body{
+            background:#f3f4f6;
+            overflow-x:hidden;
+        }
+
+        /* Navbar */
+        nav{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            background:#14532d;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:14px 40px;
+            z-index:1000;
+            box-shadow:0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+
+        .logo img{
+            width:60px;
+            height:60px;
+            border-radius:10px;
+        }
+
+        .logo-text h1{
+            color:white;
+            font-size:32px;
+            line-height:1;
+        }
+
+        .logo-text p{
+            color:#d1d5db;
+            font-size:14px;
+            margin-top:3px;
+        }
+
+        .nav-links{
+            display:flex;
+            align-items:center;
+            gap:30px;
+            margin-left:auto;
+            margin-right:70px;
+             position:absolute;
+    left:55%;   /* same value you used before */
+    transform:translateX(-50%);
+       white-space:nowrap;
+        }
+
+        .nav-links a{
+            color:white;
+            text-decoration:none;
+            font-size:18px;
+            font-weight:500;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active{
+            color:#22c55e;
+        }
+
+        /* ✨ NEON HOVER */
+.nav-links a:hover,
+.nav-links a.active{
+    color:#22c55e;
+    text-shadow:0 0 8px #22c55e,0 0 15px #22c55e;
+}
+
+/* CONTACT BUTTON */
+.contact-btn{
+    background:#22c55e;
+    padding:8px 16px;
+    border-radius:20px;
+    font-weight:600;
+}
+
+.contact-btn:hover{
+    background:#16a34a;
+    text-shadow:none;
+}
+        /* Sidebar button */
+        .menu-btn{
+            position:fixed;
+            top:22px;
+            right:30px;
+            color:white;
+            font-size:32px;
+            cursor:pointer;
+            z-index:5000;
+        }
+
+        /* Sidebar */
+        .sidebar{
+            position:fixed;
+            top:88px;
+            right:-250px;
+            width:250px;
+            height:calc(100% - 88px);
+            background:#14532d;
+            transition:0.4s;
+            z-index:2000;
+            border-top:1px solid rgba(255,255,255,0.15);
+        }
+
+        .sidebar.active{
+            right:0;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:18px 30px;
+            font-size:20px;
+            border-bottom:1px solid rgba(255,255,255,0.1);
+            transition:0.3s;
+        }
+
+        .sidebar a:hover{
+            background:#22c55e;
+        }
+
+        /* Main section */
+        .main{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:130px 20px 40px;
+        }
+
+        .forgot-card{
+            width:100%;
+            max-width:520px;
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .forgot-card h2{
+            text-align:center;
+            color:#14532d;
+            font-size:38px;
+            margin-bottom:12px;
+        }
+
+        .forgot-card p{
+            text-align:center;
+            color:#4b5563;
+            font-size:17px;
+            margin-bottom:35px;
+            line-height:1.6;
+        }
+
+        .field{
+            margin-bottom:22px;
+        }
+
+        .field label{
+            display:block;
+            margin-bottom:8px;
+            font-size:16px;
+            font-weight:600;
+            color:#111827;
+        }
+
+        .field input{
+            width:100%;
+            padding:14px 16px;
+            border:1px solid #d1d5db;
+            border-radius:10px;
+            background:#f9fafb;
+            font-size:16px;
+        }
+
+        .field input:focus{
+            outline:none;
+            border-color:#22c55e;
+            box-shadow:0 0 0 4px rgba(34,197,94,0.12);
+        }
+
+        .submit-btn{
+            width:100%;
+            padding:15px;
+            background:#22c55e;
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-size:17px;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.3s;
+            margin-top:10px;
+        }
+
+        .submit-btn:hover{
+            background:#16a34a;
+            transform:translateY(-2px);
+        }
+
+        .back-login{
+            text-align:center;
+            margin-top:22px;
+        }
+
+        .back-login a{
+            color:#14532d;
+            text-decoration:none;
+            font-weight:600;
+        }
+
+        .back-login a:hover{
+            color:#22c55e;
+        }
+
+        /* Footer */
+        .footer{
+            background:#14532d;
+            color:white;
+            padding-top:35px;
+            margin-top:30px;
+        }
+
+        .footer-content{
+            max-width:1100px;
+            margin:auto;
+            padding:0 40px 30px;
+        }
+
+        .footer-left h3{
+            font-size:28px;
+            margin-bottom:10px;
+        }
+
+        .footer-left p{
+            color:#d1d5db;
+            line-height:1.7;
+        }
+
+        .footer-bottom{
+            text-align:center;
+            border-top:1px solid rgba(255,255,255,0.2);
+            padding:18px;
+            font-size:15px;
+            color:#d1d5db;
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <h1>TripWise</h1>
-        <p>Split your expenses wisely</p>
-    </header>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="TripWise Logo">
+            <div class="logo-text">
+                <h1>TripWise</h1>
+                <p>Split your expenses wisely</p>
+            </div>
+        </div>
 
-    <hr>
-    <br>
-    <br>
-    <main>
-        <center>
-            <h2>forgot password?</h2>
-            <br>
-            <br>
-            <br>
-            <form action="/action.php">
-                New password:
-                <input type="password" placeholder="ENTER NEW PASSWORD">
-                <br>
-                <br>
-                Confirm password:
-                <input type="password" placeholder="CONFIRM NEW PASSWORD">
-            </form>
-             <br>
-            <br>
+       <div class="nav-links">
+        <a href="homepg.html" ><i class="fa-solid fa-house"></i> Home</a>
+        <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
+        <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
+        <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
+
+        <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
+
+        <a href="contact.html" class="contact-btn">
+            <i class="fa-solid fa-phone"></i> Contact Us
+        </a>
+
+            <a href="login.html" class="active">
+                <i class="fa-solid fa-circle-user"></i>Profile</a>
+        </div>
+
+        <div class="menu-btn" onclick="openSidebar()">
+             <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <a href="homepg.html">Home</a>
+        <a href="create_trip.html">Create Trip</a>
+        <a href="add_expense.html">Expenses</a>
+        <a href="summary.html">Summary</a>
+        <a href="login.html">Profile</a>
+    </div>
+
+    <!-- Main -->
+    <main class="main">
+        <div class="forgot-card">
+            <h2>Forgot Password?</h2>
+            <p>Create a new password to access your TripWise account again.</p>
+
             <form action="login.html" method="get">
-            <button type="submit">SUBMIT</button>
-        </center>
+                <div class="field">
+                    <label>New Password</label>
+                    <input type="password" placeholder="Enter new password" required>
+                </div>
+
+                <div class="field">
+                    <label>Confirm Password</label>
+                    <input type="password" placeholder="Confirm new password" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Reset Password</button>
+            </form>
+
+            <div class="back-login">
+                <a href="login.html">← Back to Login</a>
+            </div>
+        </div>
     </main>
-            
-        </body>
-        </html>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>TripWise</h3>
+                <p>Split your expenses wisely and enjoy stress-free trips.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 TripWise | BS AICS Capstone Project
+        </div>
+    </footer>
+
+    <script>
+        function openSidebar(){
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
