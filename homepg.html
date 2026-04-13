@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>TripWise - Home</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+html, body{
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
+*{
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background:#f3f4f6;
+    position:relative;
+}
+
+/* 🌿 BLUR BACKGROUND */
+body::before, body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(140px);
+    z-index:-2;
+    animation:float 14s infinite alternate ease-in-out;
+}
+
+body::before{
+    background:#22c55e;
+    top:80px;
+    left:80px;
+}
+
+body::after{
+    background:#14532d;
+    bottom:80px;
+    right:80px;
+}
+
+@keyframes float{
+    0%{transform:translate(0,0);}
+    100%{transform:translate(80px,-60px);}
+}
+
+/* ✨ FLOATING PARTICLES */
+.particles span{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:#22c55e;
+    border-radius:50%;
+    opacity:0.4;
+    animation:move 10s linear infinite;
+    z-index:-1;
+}
+
+@keyframes move{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    background:#14532d;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 40px;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo img{
+    width:60px;
+    height:60px;
+    border-radius:12px;
+}
+
+.logo-text h1{
+    color:white;
+    font-size:30px;
+    margin:0;
+}
+
+.logo-text p{
+    color:#d1d5db;
+    font-size:13px;
+    margin:0;
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+    align-items:center;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    transition:0.3s;
+    font-size:18px;
+    font-weight:500;
+}
+
+/* ✨ NEON HOVER */
+.nav-links a:hover,
+.nav-links a.active{
+    color:#22c55e;
+    text-shadow:0 0 8px #22c55e,0 0 15px #22c55e;
+}
+
+/* CONTACT BUTTON */
+.contact-btn{
+    background:#22c55e;
+    padding:8px 16px;
+    border-radius:20px;
+    font-weight:600;
+}
+
+.contact-btn:hover{
+    background:#16a34a;
+    text-shadow:none;
+}
+
+.menu-btn{
+    color:white;
+    font-size:30px;
+    cursor:pointer;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    top:0;
+    right:-280px;
+    width:280px;
+    height:100%;
+    background:#14532d;
+    padding-top:90px;
+    transition:0.4s;
+     z-index:999;
+            box-shadow:-4px 0 15px rgba(0,0,0,0.3);
+}
+
+.sidebar.active{
+    right:0;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    padding:22px 30px;
+    text-decoration:none;
+    font-size:28px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+            transition:0.3s;
+}
+
+.sidebar a:hover{
+    background:#1c6b3a;
+     padding-left:40px;
+}
+
+/* MAIN */
+.main{
+    max-width:1200px;
+    margin:120px auto 40px;
+    padding:0 20px;
+}
+
+/* HERO */
+.hero{
+    background:white;
+    border-radius:20px;
+     box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    padding:50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+}
+ .hero-text{
+            width:55%;
+    display:flex;
+    flex-direction:column;
+
+        }
+.hero-text h2{
+     font-size:64px;
+            line-height:1.1;
+            margin-bottom:20px;
+}
+
+.hero-text span{
+    color:#22c55e;
+}
+
+.hero-text p{
+   font-size:26px;
+            color:#374151;
+            margin-bottom:30px;
+            line-height:1.5;
+}
+ .buttons{
+            display:flex;
+            gap:18px;
+        }
+.buttons button{
+    padding:14px 28px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:18px;
+            font-weight:600;
+            transition:0.3s;
+}
+
+.primary-btn{
+    background:#22c55e;
+    color:white;
+}
+ .primary-btn:hover{
+            background:#16a34a;
+            transform:translateY(-2px);
+        }
+
+.secondary-btn{
+     background:white;
+            color:#14532d;
+            border:2px solid #d1d5db !important;
+   
+}
+ .secondary-btn:hover{
+            background:#f3f4f6;
+        }
+       
+       
+        .hero-text{
+    width:55%;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start; /* ✅ keeps everything left */
+}
+
+.trust-wrapper{
+    margin-top:auto;   /* pushes it to bottom */
+    padding-top:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+/* Profile container */
+.trust-users{
+    display:flex;
+}
+
+/* Each circle */
+.user{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+   display: flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    font-weight:bold;
+    color:white;
+    border:2px solid white;
+    margin-left:-10px; /* overlap effect */
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* First one no overlap */
+.user:first-child{
+    margin-left:0;
+}
+
+.trust-wrapper{
+    margin-top:15px;
+    
+    align-items:center;
+    gap:10px;
+}
+.cta-section{
+    display:flex;
+    flex-direction:column; /* 👈 forces vertical layout */
+    align-items:flex-start;
+    gap:10px;
+}
+
+
+
+ 
+/* Gradient colors */
+.u1{background:linear-gradient(135deg,#ec4899,#8b5cf6);}
+.u2{background:linear-gradient(135deg,#3b82f6,#06b6d4);}
+.u3{background:linear-gradient(135deg,#22c55e,#16a34a);}
+.u4{background:linear-gradient(135deg,#f59e0b,#ef4444);}
+.u5{background:linear-gradient(135deg,#6366f1,#9333ea);}
+
+/* Text */
+.trust-text{
+    font-size:14px;
+    color:#6b7280;
+}
+
+/* Highlight number */
+.trust-text b{
+    color:#22c55e;
+}
+
+
+
+ .hero-image img{
+            width:350px;
+        }
+
+
+ .features{
+            margin-top:35px;
+            background:white;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+            padding:35px 20px;
+            display:flex;
+            justify-content:space-around;
+            text-align:center;
+        }
+
+        .feature{
+            width:30%;
+            padding:10px 20px;
+        }
+
+        .feature i{
+            font-size:42px;
+            color:#22c55e;
+            margin-bottom:18px;
+        }
+
+        .feature h3{
+            font-size:34px;
+            margin-bottom:12px;
+        }
+
+        .feature p{
+            color:#4b5563;
+            font-size:20px;
+            line-height:1.5;
+        }
+
+ .welcome{
+            margin-top:35px;
+            background:white;
+            border-radius:20px;
+            padding:35px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .welcome h2{
+            font-size:42px;
+            margin-bottom:15px;
+            color:#14532d;
+        }
+
+        .welcome p{
+            font-size:22px;
+            line-height:1.8;
+            color:#374151;
+        }
+ .destination-section{
+            margin-top:40px;
+        }
+
+        .destination-section h2{
+            text-align:center;
+            font-size:42px;
+            margin-bottom:25px;
+            color:#14532d;
+        }
+
+        .destinations{
+            display:flex;
+            gap:20px;
+            justify-content:center;
+            flex-wrap:wrap;
+        }
+
+        .card{
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            width:250px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.08);
+            transition:0.3s;
+            cursor:pointer;
+        }
+
+        .card:hover{
+            transform:scale(1.08);
+        }
+
+        .card img{
+            width:100%;
+            height:160px;
+            object-fit:cover;
+        }
+
+        .card h3{
+            text-align:center;
+            padding:18px;
+            font-size:28px;
+            color:#111827;
+        }
+
+        .why-tripwise{
+    width: 80%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 18px;
+    padding: 35px 45px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    text-align: left;
+}
+.why-section{
+    margin-top:60px;
+    text-align:center;
+}
+
+.why-section h2{
+    font-size:38px;
+    color:#14532d;
+    margin-bottom:30px;
+}
+
+/* Grid layout */
+.why-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+/* Card */
+.why-card{
+    width:260px;
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.why-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(34,197,94,0.25);
+}
+
+.why-card i{
+    font-size:40px;
+    color:#22c55e;
+    margin-bottom:15px;
+}
+
+.why-card h3{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.why-card p{
+    font-size:15px;
+    color:#4b5563;
+}
+
+.feedback-section{
+    margin-top:50px;
+    padding:30px;
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+}
+
+.feedback-title{
+    text-align:center;
+    font-size:36px;
+    color:#14532d;
+    margin-bottom:25px;
+}
+
+
+/* Horizontal Scroll */
+.feedback-container{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    padding:10px;
+
+}
+/* AVATAR BASE */
+.avatar{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    color:white;
+    margin:auto;
+    margin-bottom:10px;
+    font-weight:bold;
+    position:relative;
+    overflow:hidden;
+}
+
+/* GLOW BORDER EFFECT */
+.avatar::before{
+    content:"";
+    position:absolute;
+    inset:-3px;
+    border-radius:50%;
+    background:linear-gradient(45deg,#22c55e,#3b82f6,#ec4899,#22c55e);
+    z-index:-1;
+    filter:blur(6px);
+}
+
+/* SHINE ANIMATION */
+.avatar::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
+    transform:translateX(-100%);
+    
+}
+
+@keyframes shine{
+    100%{transform:translateX(100%);}
+}
+
+/* UNIQUE GRADIENTS */
+.meghna{
+    background:linear-gradient(135deg,#ec4899,#8b5cf6,#6366f1);
+}
+
+.halil{
+    background:linear-gradient(135deg,#3b82f6,#22c55e);
+}
+
+.manasvi{
+    background:linear-gradient(135deg,#f59e0b,#ef4444);
+}
+
+.rishabh{
+    background:linear-gradient(135deg,#06b6d4,#3b82f6);
+}
+
+.atish{
+    background:linear-gradient(135deg,#22c55e,#4ade80);
+}
+
+/* Hide scrollbar (optional) */
+.feedback-container::-webkit-scrollbar{
+    display:none;
+}
+
+/* Cards */
+.feedback-card{
+    min-width:280px;
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+    cursor:pointer;
+}
+
+/* Hover popup effect */
+.feedback-card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 20px 40px rgba(34,197,94,0.3);
+}
+
+.feedback-card p{
+    font-size:16px;
+    color:#374151;
+    margin-bottom:15px;
+}
+
+.feedback-card h4{
+    color:#22c55e;
+}
+/* FOOTER */
+.footer{
+    background:#14532d;
+    color:white;
+    padding:30px 40px 20px;
+}
+
+/* CENTER TEXT */
+.footer-center{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.footer-center h2{
+    margin:0;
+    font-size:26px;
+}
+
+.footer-center p{
+    margin-top:5px;
+    color:#d1d5db;
+}
+
+/* BOTTOM ROW */
+.footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+/* LEFT LINKS */
+.footer-left{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.footer-left a{
+    color:white;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.footer-left a:hover{
+    color:#22c55e;
+}
+
+/* RIGHT TEXT */
+.footer-right{
+    font-size:14px;
+    color:#d1d5db;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+}
+ 
+</style>
+</head>
+
+<body>
+
+<!-- PARTICLES -->
+<div class="particles">
+    <span style="left:10%; animation-delay:0s"></span>
+    <span style="left:30%; animation-delay:2s"></span>
+    <span style="left:50%; animation-delay:4s"></span>
+    <span style="left:70%; animation-delay:1s"></span>
+    <span style="left:90%; animation-delay:3s"></span>
+</div>
+
+
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <img src="logo.png">
+        <div class="logo-text">
+            <h1>TripWise</h1>
+            <p>Split your expenses wisely</p>
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <a href="homepg.html" class="active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="create_trip.html"><i class="fa-solid fa-plus"></i> Create Trip</a>
+        <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
+        <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
+
+        <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
+
+        <a href="contact.html" class="contact-btn">
+            <i class="fa-solid fa-phone"></i> Contact Us
+        </a>
+
+        <a href="create_acc.html">
+            <i class="fa-solid fa-circle-user"></i> Profile
+        </a>
+    </div>
+
+    <div class="menu-btn" onclick="openSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <a href="homepg.html">Home</a>
+    <a href="create_trip.html">Create Trip</a>
+    <a href="add_expense.html">Expenses</a>
+    <a href="summary.html">Summary</a>
+    <a href="aboutus.html">About</a>
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-text">
+                <h2>Travel Together.<br><span>Split Smarter.</span></h2>
+
+                <p>
+                    Manage group trips, track expenses, and settle balances easily with TripWise.
+                </p>
+<br>
+                <div class="buttons">
+                    <button class="primary-btn" onclick="window.location.href='create_trip.html'">Get Started →</button>
+                    <button class="secondary-btn" onclick="window.location.href='aboutus.html'">Learn More →</button>
+                </div>
+            </div>
+            <div class="trust-wrapper">
+
+    
+
+    <!-- Profile Icons -->
+    <div class="trust-users">
+        <div class="user u1">M</div>
+        <div class="user u2">H</div>
+        <div class="user u3">M</div>
+        <div class="user u4">R</div>
+        <div class="user u5">A</div>
+    </div>
+
+    <!-- Text -->
+    <p class="trust-text">
+        Joined by <b>10,000+</b> travelers
+    </p>
+
+</div>
+
+
+            <div class="hero-image">
+                <img src="travel.png" alt="TripWise Illustration">
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <h3>1. Create Trips</h3>
+                <p>Plan trips with friends and manage everything in one place.</p>
+            </div>
+
+            <div class="feature">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                <h3>2. Add Expenses</h3>
+                <p>Record shared expenses quickly and effortlessly.</p>
+            </div>
+
+            <div class="feature">
+                <i class="fa-solid fa-users"></i>
+                <h3>3. Split Wisely</h3>
+                <p>Get accurate settlements and maintain transparency.</p>
+            </div>
+        </div>
+
+        <!-- Welcome Section BELOW features and ABOVE destinations -->
+        <div class="welcome">
+            <h2>Welcome to TripWise</h2>
+            <p>
+                TripWise is a simple web application that helps groups manage and split travel expenses easily.
+                No more confusion about who paid what. No more manual calculations or awkward money talks —
+                just add expenses and get clear summaries instantly.
+            </p>
+        </div>
+
+        <!-- Destinations -->
+        <div class="destination-section">
+            <h2>Popular Destinations</h2>
+
+            <div class="destinations">
+                <div class="card">
+                    <img src="goa.jpg" alt="Goa">
+                    <h3>Goa</h3>
+                </div>
+
+                <div class="card">
+                    <img src="manali.jpg" alt="Manali">
+                    <h3>Manali</h3>
+                </div>
+
+                <div class="card">
+                    <img src="jaipur.jpg" alt="Jaipur">
+                    <h3>Jaipur</h3>
+                </div>
+
+                <div class="card">
+                    <img src="kerala.jpg" alt="Kerala">
+                    <h3>Kerala</h3>
+                </div>
+                
+                <div class="card">
+                    <img src="ladakh.jpg" alt="Ladakh">
+                    <h3>Ladakh</h3>
+                </div>
+
+                <div class="card">
+                    <img src="tajmahal.jpg" alt="Taj Mahal">
+                    <h3>Taj Mahal</h3>
+                </div>
+
+                <div class="card">
+                    <img src="rishikesh.jpg" alt="Rishikesh">
+                    <h3>Rishikesh</h3>
+                </div>
+
+                <div class="card">
+                    <img src="dalhousie.jpg" alt="Dalhousie">
+                    <h3>Dalhousie</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+<div class="why-section">
+    <h2>💚 Why Choose TripWise?</h2>
+
+    <div class="why-container">
+
+        <div class="why-card">
+            <i class="fa-solid fa-calculator"></i>
+            <h3>No Manual Calculations</h3>
+            <p>Automatically split expenses without doing any math.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="fa-solid fa-users"></i>
+            <h3>Easy to Use</h3>
+            <p>Perfect for friends, college trips, and family vacations.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="fa-solid fa-clock"></i>
+            <h3>Saves Time</h3>
+            <p>No confusion or long calculations — everything is instant.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Clear Summary</h3>
+            <p>See who owes whom with a clean and simple interface.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="fa-solid fa-shield-heart"></i>
+            <h3>Stress-Free Trips</h3>
+            <p>Focus on memories, not money problems.</p>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="feedback-section">
+
+    <h2 class="feedback-title">💬 Users Feedback</h2>
+
+    <div class="feedback-container">
+
+
+        <!-- Cards here -->
+        
+        <!-- Paste all feedback cards from above -->
+         <div class="feedback-card">
+            <div class="avatar meghna">M</div>
+             <center><h4>  Meghna Srivastava</h4></center>
+             <div class="stars">★★★★★</div>
+    <p>"TripWise made our Goa trip stress-free! No confusion about who paid what — everything was clear and instant."</p>
+   
+</div>
+
+<div class="feedback-card">
+   <div class="avatar halil">H</div>
+      <center><h4>  Halil</h4></center>
+       <div class="stars">★★★★★</div>
+    <p>"Earlier we used notes and calculators, now TripWise handles everything. The summary feature is a lifesaver!"</p>
+</div>
+
+<div class="feedback-card">
+   <div class="avatar manasvi">M</div>
+    <center><h4>  Manasvi Jain</h4></center>
+     <div class="stars">★★★★★</div>
+    <p>"Splitting expenses with friends has never been this easy. Clean UI and super smooth experience!"</p>
+    
+</div>
+
+<div class="feedback-card">
+    <div class="avatar rishabh">R</div>
+     <center><h4>  Rishabh Srivastava</h4></center>
+     <div class="stars">★★★★★</div>
+    <p>"The balance tracking is amazing! No awkward conversations anymore after trips 😄"</p>
+    
+</div>
+
+<div class="feedback-card">
+   <div class="avatar atish">A</div>
+     <center><h4>  Atish Kumar</h4></center>
+     <div class="stars">★★★★★</div>
+    <p>"TripWise helped us manage our college trip expenses perfectly. Highly recommended!"</p>
+   
+    </div>
+    
+</div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <!-- CENTER TAGLINE -->
+    <div class="footer-center">
+        <h2>TripWise</h2>
+        <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
+    </div>
+<br>
+<br>
+<hr style="border-color:#1c6b3a; margin:20px 0;">
+<br>
+    <!-- BOTTOM ROW -->
+    <div class="footer-bottom">
+
+        <!-- LEFT -->
+        <div class="footer-left">
+            <a href="aboutus.html">
+                <i class="fa-solid fa-circle-info"></i> About Us
+            </a>
+
+            <a href="contact.html">
+                <i class="fa-solid fa-phone"></i> Contact Us
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
+            </a>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="footer-right">
+            © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+        </div>
+
+    </div>
+
+</footer>
+<script>
+function openSidebar(){
+    document.getElementById("sidebar").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
+
+
