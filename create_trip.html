@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Trip - TripWise</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', sans-serif;
+        }
+
+        body{
+            background:#f3f4f6;
+            color:#111827;
+            overflow-x:hidden;
+        }
+
+        /* 🌿 BLUR BACKGROUND */
+body::before, body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(140px);
+    z-index:-2;
+    animation:float 14s infinite alternate ease-in-out;
+}
+
+body::before{
+    background:#22c55e;
+    top:80px;
+    left:80px;
+}
+
+body::after{
+    background:#14532d;
+    bottom:80px;
+    right:80px;
+}
+
+@keyframes float{
+    0%{transform:translate(0,0);}
+    100%{transform:translate(80px,-60px);}
+}
+
+        /* ✨ FLOATING PARTICLES */
+.particles span{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:#22c55e;
+    border-radius:50%;
+    opacity:0.4;
+    animation:move 10s linear infinite;
+    z-index:-1;
+}
+
+@keyframes move{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+
+        /* Navbar */
+        nav{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            background:#14532d;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:14px 40px;
+            z-index:1000;
+            box-shadow:0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo{
+            flex:1;
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+
+        .logo img{
+            width:60px;
+            height:60px;
+            border-radius:10px;
+        }
+
+        .logo-text h1{
+            color:white;
+            font-size:32px;
+            line-height:1;
+        }
+
+        .logo-text p{
+            color:#d1d5db;
+            font-size:14px;
+            margin-top:3px;
+        }
+       
+        .nav-links{
+            display:flex;
+            gap:30px;
+             align-items:center;
+             position:absolute;
+             left:55%;   /* 🔥 change from 50% → 55% */
+    transform:translateX(-50%);
+     gap:22px;
+     white-space:nowrap; 
+        }
+
+        .nav-links a{
+            color:white;
+            text-decoration:none;
+            font-size:18px;
+        }
+
+        .nav-links a.active{
+            color:#22c55e;
+        }
+        
+        /* NAV ICON ALIGN */
+        .nav-links a{
+            display:flex;
+             align-items:center;
+             gap:6px;
+        }
+        /* NEON EFFECT */
+        .nav-links a:hover,
+         .nav-links a.active{
+    color:#22c55e;
+    text-shadow:0 0 8px #22c55e, 0 0 15px #22c55e;
+}
+
+        .nav-links a:hover,
+        .nav-links a.active{
+            color:#22c55e;
+            text-shadow:0 0 8px #22c55e, 0 0 15px #22c55e;
+        }
+
+        /* CONTACT BUTTON */
+        .contact-btn{
+             background:#22c55e;
+             padding:8px 16px;
+            border-radius:20px;
+}
+
+        .menu-btn{
+            flex:1;
+    display:flex;
+    justify-content:flex-end;
+            top:22px;
+            right:30px;
+            color:white;
+            font-size:28px;
+            cursor:pointer;
+            z-index:5000;
+        }
+
+        /* Sidebar */
+        .sidebar{
+            position:fixed;
+            top:88px;
+            right:-250px;
+            width:250px;
+            height:calc(100% - 88px);
+            background:#14532d;
+            transition:0.4s;
+            z-index:2000;
+            border-top:1px solid rgba(255,255,255,0.15);
+        }
+
+        .sidebar.active{
+            right:0;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:18px 30px;
+            font-size:20px;
+            border-bottom:1px solid rgba(255,255,255,0.1);
+            transition:0.3s;
+        }
+
+        .sidebar a:hover{
+            background:#22c55e;
+        }
+
+        /* Main Container */
+        .main{
+            max-width:1000px;
+            margin:130px auto 60px;
+            padding:0 20px;
+        }
+
+        .trip-card{
+            background:white;
+            border-radius:22px;
+            padding:40px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .trip-card h2{
+            text-align:center;
+            color:#14532d;
+            font-size:38px;
+            margin-bottom:10px;
+        }
+
+        .trip-card p{
+            text-align:center;
+            color:#4b5563;
+            margin-bottom:35px;
+            font-size:18px;
+        }
+
+        /* Progress */
+
+        .progress-container{
+            margin-bottom:40px;
+        }
+
+        .steps{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            position:relative;
+            margin-bottom:15px;
+        }
+
+        .steps::before{
+            content:"";
+            position:absolute;
+            top:20px;
+            left:10%;
+            width:80%;
+            height:4px;
+            background:#d1d5db;
+            z-index:0;
+        }
+
+        .step{
+            position:relative;
+            z-index:1;
+            text-align:center;
+            width:20%;
+        }
+
+        .step-number{
+            width:42px;
+            height:42px;
+            margin:auto;
+            border-radius:50%;
+            background:#22c55e;
+            color:white;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-weight:700;
+            margin-bottom:10px;
+        }
+
+        .step p{
+            font-size:14px;
+            color:#374151;
+        }
+
+        /* Form */
+        .form-section h3{
+            color:#14532d;
+            font-size:28px;
+            margin-bottom:25px;
+        }
+
+        .field{
+            margin-bottom:22px;
+        }
+
+        .field label{
+            display:block;
+            margin-bottom:8px;
+            font-size:16px;
+            font-weight:600;
+        }
+
+        .field input,
+        .field select,
+        .field textarea{
+            width:100%;
+            padding:14px 16px;
+            border:1px solid #d1d5db;
+            border-radius:12px;
+            background:#f9fafb;
+            font-size:16px;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus{
+            outline:none;
+            border-color:#22c55e;
+            box-shadow:0 0 0 4px rgba(34,197,94,0.12);
+        }
+
+        .two-fields{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+
+        .add-destination{
+            color:#22c55e;
+            font-weight:600;
+            text-decoration:none;
+            display:inline-block;
+            margin-top:10px;
+        }
+
+        .submit-btn{
+            width:100%;
+            margin-top:25px;
+            padding:16px;
+            background:#22c55e;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-size:18px;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .submit-btn:hover{
+            background:#16a34a;
+            transform:translateY(-2px);
+        }
+
+        /* Footer */
+        .footer{
+    background:#14532d;
+    color:white;
+    padding:30px 40px 20px;
+}
+
+/* CENTER TEXT */
+.footer-center{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.footer-center h2{
+    margin:0;
+    font-size:26px;
+}
+
+.footer-center p{
+    margin-top:5px;
+    color:#d1d5db;
+}
+
+/* BOTTOM ROW */
+.footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+/* LEFT LINKS */
+.footer-left{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.footer-left a{
+    color:white;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.footer-left a:hover{
+    color:#22c55e;
+}
+
+/* RIGHT TEXT */
+.footer-right{
+    font-size:14px;
+    color:#d1d5db;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+}
+
+   
+
+        
+    </style>
+</head>
+<body>
+
+    <!-- PARTICLES -->
+<div class="particles">
+    <span style="left:10%; animation-delay:0s"></span>
+    <span style="left:30%; animation-delay:2s"></span>
+    <span style="left:50%; animation-delay:4s"></span>
+    <span style="left:70%; animation-delay:1s"></span>
+    <span style="left:90%; animation-delay:3s"></span>
+</div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="TripWise Logo">
+            <div class="logo-text">
+                <h1>TripWise</h1>
+                <p>Split your expenses wisely</p>
+            </div>
+        </div>
+
+        <div class="nav-links">
+        <a href="homepg.html" >
+            <i class="fa-solid fa-house" ></i> Home</a>
+        <a href="create_trip.html" class ="active">
+            <i class="fa-solid fa-plus" ></i> Create Trip</a>
+        <a href="add_expense.html">
+            <i class="fa-solid fa-wallet"></i> Expenses</a>
+        <a href="summary.html">
+            <i class="fa-solid fa-chart-pie"></i> Summary</a>
+
+        <a href="aboutus.html">
+            <i class="fa-solid fa-circle-info"></i> About</a>
+
+        <a href="contact.html" class="contact-btn">
+            <i class="fa-solid fa-phone"></i> Contact Us
+        </a>
+
+        <a href="create_acc.html">
+            <i class="fa-solid fa-circle-user"></i> Profile
+        </a>
+    </div>
+
+        <div class="menu-btn" onclick="openSidebar()">☰</div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <a href="homepg.html">Home</a>
+        <a href="create_trip.html">Create Trip</a>
+        <a href="add_expense.html">Expenses</a>
+        <a href="summary.html">Summary</a>
+        <a href="login.html">Profile</a>
+    </div>
+
+    <!-- Main -->
+    <main class="main">
+        <div class="trip-card">
+            <h2>Customize Your Tour</h2>
+            <p>Plan your trip details and manage your expenses effortlessly.</p>
+
+           
+            <!-- Progress Steps -->
+            <div class="progress-container">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <p>Basic Trip Details</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <p>Create Trip</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <p>Add members</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <p>Add Expenses</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <p>View Summary</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form action="add_expense.html" method="get">
+
+                <div class="form-section">
+                    <h3>Basic Trip Details</h3>
+
+                    <div class="field">
+                        <label>Where do you want to go? *</label>
+                        <input type="text" placeholder="Enter destination" required>
+                        <a href="#" class="add-destination">+ Add Another Destination</a>
+                    </div>
+
+                    <div class="field">
+                        <label>Trip Name</label>
+                        <input type="text" placeholder="e.g. Goa Friends Trip">
+                    </div>
+
+                    <div class="two-fields">
+                        <div class="field">
+                            <label>Start Date</label>
+                            <input type="date">
+                        </div>
+
+                        <div class="field">
+                            <label>End Date</label>
+                            <input type="date">
+                        </div>
+                    </div>
+
+                    <div class="two-fields">
+                        <div class="field">
+                            <label>Trip Duration</label>
+                            <input type="text" placeholder="e.g. 5 Days / 4 Nights">
+                        </div>
+
+                        <div class="field">
+                            <label>Number of Members</label>
+                            <input type="number" placeholder="Enter number of people">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Travel Budget</label>
+                        <input type="text" placeholder="e.g. ₹20,000">
+                    </div>
+
+                    <div class="field">
+                        <label>Type of Trip</label>
+                        <select>
+                            <option>Friends Trip</option>
+                            <option>Family Vacation</option>
+                            <option>Solo Travel</option>
+                            <option>College Tour</option>
+                            <option>Adventure Trip</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Special Notes</label>
+                        <textarea rows="4" placeholder="Mention anything important about your trip..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Create Trip</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+   <footer class="footer">
+
+    <!-- CENTER TAGLINE -->
+    <div class="footer-center">
+        <h2>TripWise</h2>
+        <p>Split your expenses wisely and enjoy stress-free travel planning.</p>
+    </div>
+<br>
+<br>
+<hr style="border-color:#1c6b3a; margin:20px 0;">
+<br>
+    <!-- BOTTOM ROW -->
+    <div class="footer-bottom">
+
+        <!-- LEFT -->
+        <div class="footer-left">
+            <a href="aboutus.html">
+                <i class="fa-solid fa-circle-info"></i> About Us
+            </a>
+
+            <a href="contact.html">
+                <i class="fa-solid fa-phone"></i> Contact Us
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-envelope"></i> tripwise.expensesplit@gmail.com
+            </a>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="footer-right">
+            © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+        </div>
+
+    </div>
+
+</footer>
+
+    <script>
+        function openSidebar(){
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
