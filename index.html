@@ -5,6 +5,7 @@
 
 <link rel="icon" type="image/png" href="image/logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
 html, body{
@@ -407,7 +408,8 @@ nav{
             justify-content:center;
             flex-wrap:wrap;
         }
-
+        
+       
         .card{
             background:white;
             border-radius:18px;
@@ -816,42 +818,42 @@ nav{
             <h2>Popular Destinations</h2>
 
             <div class="destinations">
-                <div class="card">
+                <div class="card"  data-aos="zoom-in">
                     <img src="image/goa.jpg" alt="Goa">
                     <h3>Goa</h3>
                 </div>
 
-                <div class="card">
+                <div class="card"  data-aos="zoom-in">
                     <img src="image/manali.jpg" alt="Manali">
                     <h3>Manali</h3>
                 </div>
 
-                <div class="card">
+                <div class="card"  data-aos="zoom-in">
                     <img src="image/jaipur.jpg" alt="Jaipur">
                     <h3>Jaipur</h3>
                 </div>
 
-                <div class="card">
+                <div class="card"  data-aos="zoom-in">
                     <img src="image/kerala.jpg" alt="Kerala">
                     <h3>Kerala</h3>
                 </div>
-                
-                <div class="card">
+
+                <div class="card"  data-aos="zoom-in">
                     <img src="image/ladakh.jpg" alt="Ladakh">
                     <h3>Ladakh</h3>
                 </div>
 
-                <div class="card">
+                <div class="card"  data-aos="zoom-in">
                     <img src="image/tajmahal.jpg" alt="Taj Mahal">
                     <h3>Taj Mahal</h3>
                 </div>
 
-                <div class="card">
+                <div class="card"  data-aos="zoom-in">
                     <img src="image/rishikesh.jpg" alt="Rishikesh">
                     <h3>Rishikesh</h3>
                 </div>
 
-                <div class="card">
+                <div class="card"  data-aos="zoom-in">
                     <img src="image/dalhousie.jpg" alt="Dalhousie">
                     <h3>Dalhousie</h3>
                 </div>
@@ -1001,6 +1003,14 @@ function openSidebar(){
 }
 </script>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  AOS.init({
+    duration: 1000,  // animation speed
+    once: true       // animate only once
+  });
+</script>
 </body>
 </html>
 
