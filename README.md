@@ -25,11 +25,10 @@ TripWise is a web-based application designed to help users manage and split grou
 5. Views summary of payments
 
 ## Team Members
-- Mahima Kumari (Team Leader & Frontend - HTML/CSS)
+- Mahima Kumari (Team Leader & Frontend - HTML/CSS, git)
 - Komal (Backend - Python)
 - Mansi (AI Chatbot Integration)
 - Khushi Kumari(JavaScript - Logic)
 - Khushi Kumari(JavaScript - UI Interaction & Testing)
 
-## Project Status
-This project is currently under development. The basic structure of the website has been created, and further implementation is in progress.
+
